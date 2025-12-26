@@ -1,12 +1,12 @@
 # Chat configuration
 chat:
   logs_dir: /home/matsuo/instructlab-granite4/chatlogs
-  model: /home/matsuo/instructlab-granite4/models/granite-4.0-nano-instruct-Q4_K_M.gguf
+  model: /home/matsuo/instructlab-granite4/models/granite-4.0-1b-Q4_K_M.gguf
   temperature: 1.0
 
 # Generate configuration (ここが戦略の肝です)
 generate:
-  model: /home/matsuo/instructlab-granite4/models/granite-4.0-nano-instruct-Q4_K_M.gguf
+  model: /home/matsuo/instructlab-granite4/models/granite-4.0-1b-Q4_K_M.gguf
   taxonomy_path: /home/matsuo/instructlab-granite4/taxonomy
   output_dir: /home/matsuo/instructlab-granite4/datasets
   pipeline: simple # 低リソース環境向けにsimpleに変更
@@ -36,7 +36,7 @@ train:
 # Serve configuration
 serve:
   backend: llama-cpp
-  model_path: /home/matsuo/instructlab-granite4/models/granite-4.0-nano-instruct-Q4_K_M.gguf
+  model_path: /home/matsuo/instructlab-granite4/models/granite-4.0-1b-Q4_K_M.gguf
 
 metadata:
   cpu_info: Intel Core i5-1335U (13th Gen)
