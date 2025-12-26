@@ -12,6 +12,8 @@ generate:
   pipeline: simple # 低リソース環境向けにsimpleに変更
   sdg_scale_factor: 10 # 最初は少なめでテスト
   teacher:
+    model: /home/matsuo/instructlab-granite4/models/granite-4.0-1b-Q4_K_M.gguf
+    backend: llama-cpp
     backend: vllm # API経由の場合はvllmまたはopenai互換を指定
     # 外部API（OpenAI互換）を利用する設定例
     server:
