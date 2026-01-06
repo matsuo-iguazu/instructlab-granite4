@@ -101,10 +101,10 @@ ThinkPadの安定稼働と、高負荷プロセス（SDG/Training）完走のた
 - **対策**: `~/.config/instructlab/config.yaml` を手動修正し、正しい絶対パスを指定。
 
 ## 13. 初回推論成功 (ilab model chat)
-- **Status**: Success
-- **Model**: Granite-4.0-1b-Q4_K_M
-- **Performance**: WSL2(6CPU/12GB)環境にてスムーズな応答を確認。
+Granite-4.0-1b-Q4_K_M の火入れに成功。
 
-Intel CPU プロファイルと 1b モデルの組み合わせが、ThinkPad において実用的であることを証明。
-
+- **Response Time**: 4.938 seconds（想定以上に高速）
+- **Output**: 
+  > Hello! I am an AI language model developed by Red Hat and IBM Research. My name is Granite...
+- **Observation**: 4.0-1b モデルだが、自己紹介では granite-3.0-8b と名乗る挙動を確認。推論自体は安定している。
 
