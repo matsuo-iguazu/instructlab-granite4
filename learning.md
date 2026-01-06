@@ -29,3 +29,62 @@ python3.11 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip setuptools wheel
 pip install instructlab==0.25.0
+
+## 4. GitHub 接続設定 (SSH)
+HTTPS 認証の煩わしさを避けるため、リモートURLを SSH 形式へ変更。
+
+```bash
+git remote set-url origin git@github.com:matsuo-iguazu/instructlab-granite4.git
+
+## 5. リソース管理 (.gitignore)
+16GB RAM の ThinkPad での検証において、巨大なモデルファイルや学習中間データが GitHub 履歴を汚染するのを防ぐため、以下のディレクトリを Git 管理対象外に設定。
+
+- `models/`: GGUFモデル等の格納先
+- `generated/`: SDG (generate) プロセスの中間生成物
+- `checkpoints/`: 学習時の重みデータ
+
+## 5. リソース管理 (.gitignore)
+16GB RAM の ThinkPad での検証において、巨大なモデルファイルや学習中間データが GitHub 履歴を汚染するのを防ぐため、以下のディレクトリを Git 管理対象外に設定。
+
+- `models/`: GGUFモデル等の格納先
+- `generated/`: SDG (generate) プロセスの中間生成物
+- `checkpoints/`: 学習時の重みデータ
+
+## 6. 環境構築完了報告 (2026-01-06)
+- **Status**: Success
+- **Version**: InstructLab v0.25.0
+- **Python**: 3.11.x (venv)
+- **Artifacts**: `ilab_version.txt`, `requirements_freeze.txt` をリポジトリに記録。
+
+「更地」からの再構築により、v0.26 で発生していた依存関係の呪縛を完全に断ち切った。
+
+## 7. モデルの再調達
+環境の大掃除（rm -rf）に伴い、前回ダウンロード済みの GGUF ファイルも消失したため、再ダウンロードを実施。
+- **Target**: Granite-4.0-1b-Chat (Q4_K_M)
+- **Strategy**: 16GB RAM 環境での推論・学習の安定性を考慮し、4-bit 量子化版を選択。
+
+## 8. モデル再取得と初期設定（手順修正）
+`ilab` の仕様に従い、まず設定ファイルの初期化を行い、その後にモデルのダウンロードを実施。
+
+1. `ilab config init`: 構成ファイルの生成。
+2. `ilab model download`: Granite-4.0-1b-Q4_K_M.gguf の取得。
+
+## 9. config init 時の設定値 (ThinkPad 最適化)
+16GB RAM / Intel CPU 環境で完走させるための選択。
+
+- **Model Path**: `/home/matsuo/.cache/instructlab/models/granite-4.0-1b-Q4_K_M.gguf` を明示。
+- **Hardware Vendor**: `[3] INTEL`
+- **Hardware Profile**: `[1] INTEL CPU` (非GPU環境での CPU 推論を確定)
+
+## 10. WSL2 リソース制限設定（実設定値）
+ThinkPadの安定稼働と、高負荷プロセス（SDG/Training）完走のため、以下の制限を適用中。
+
+- **Config File**: `$env:USERPROFILE\.wslconfig`
+- **設定値**:
+  ```text
+  [wsl2]
+  processors=6
+  memory=12GB
+  swap=24GB
+
+
