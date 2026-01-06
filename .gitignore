@@ -205,3 +205,27 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- InstructLab Specific ---
+# モデルファイル (GGUF, Safetensorsなど巨大ファイル)
+models/
+*.gguf
+
+# 構成ファイル（環境に依存するパスが含まれるため）
+config.yaml
+
+# Taxonomyデータ（ここは基本Git管理しますが、検証用の一時ファイル等は除外）
+# ※ 独自のTaxonomyを管理したい場合は、ここをコメントアウトしてください
+# taxonomy/
+
+# SDG (Data Generation) で生成される中間・最終データ
+generated/
+node_datasets/
+internal_artifacts/
+
+# Training で生成されるチェックポイントと最終モデル
+checkpoints/
+it-out/
+
+# ログファイル
+*.log
