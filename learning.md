@@ -87,4 +87,24 @@ ThinkPadの安定稼働と、高負荷プロセス（SDG/Training）完走のた
   memory=12GB
   swap=24GB
 
+## 11. モデル配備完了
+`ilab model download` が正常に終了。Granite-4.0-1b (Q4_K_M) が指定ディレクトリに配備された。
+
+- **ファイルサイズ**: 976.2 MB
+- **格納パス**: `/home/matsuo/.cache/instructlab/models/granite-4.0-1b-Q4_K_M.gguf`
+
+1GB未満という軽量さは、WSL2に割り当てた 12GB RAM 環境において、推論・学習の両面で大きなアドバンテージとなる。
+## 12. トラブルシューティング：ValueError (Failed to determine backend)
+`ilab model serve` 実行時にバックエンド判定失敗のエラーが発生。
+
+- **原因**: `config init` 時の入力ミスにより、`config.yaml` 内の `model_path` が不正な文字列（GGUFとして認識不可）になっていた。
+- **対策**: `~/.config/instructlab/config.yaml` を手動修正し、正しい絶対パスを指定。
+
+## 13. 初回推論成功 (ilab model chat)
+- **Status**: Success
+- **Model**: Granite-4.0-1b-Q4_K_M
+- **Performance**: WSL2(6CPU/12GB)環境にてスムーズな応答を確認。
+
+Intel CPU プロファイルと 1b モデルの組み合わせが、ThinkPad において実用的であることを証明。
+
 
