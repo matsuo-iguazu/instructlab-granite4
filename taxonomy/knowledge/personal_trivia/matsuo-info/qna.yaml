@@ -2,7 +2,7 @@ version: 3
 created_by: matsuo
 domain: personal_trivia
 document_outline: |
-  ThinkPad環境におけるInstructLabの構成と、開発者松尾さんの日常的な情報（システム構成、モデル戦略、ランチ情報）のまとめ。
+  ThinkPad環境におけるInstructLabの構成と、開発者松尾さんの日常的な情報のまとめ。
 document:
   repo: https://github.com/matsuo-iguazu/instructlab-granite4.git
   commit: main
@@ -12,59 +12,49 @@ seed_examples:
   - context: |
       InstructLabのスリム化戦略とは、16GB RAMのThinkPad環境で軽量なモデル（Granite 4.0 1Bなど）を選択し、計算負荷の高いデータ生成をAPIに任せることで、ローカルPCの負荷を抑えつつ学習を完遂させる戦略です。
     questions_and_answers:
-      - question: |
-          InstructLabのスリム化戦略とは何ですか？
-        answer: |
-          16GB RAMのThinkPad環境で軽量モデルを選び、重い処理をAPIに逃がすことでローカル学習を完遂させる戦略です。
-      - question: |
-          なぜ低リソース環境でNanoモデルを選ぶのですか？
-        answer: |
-          メモリ消費が少なく、CPUのみのノートPCでも高速な推論と効率的な学習が可能だからです。
+      - question: InstructLabのスリム化戦略とは何ですか？
+        answer: 16GB RAMのThinkPad環境で軽量モデルを選び、重い処理をAPIに逃がすことでローカル学習を完遂させる戦略です。
+      - question: なぜ低リソース環境でNanoモデルを選ぶのですか？
+        answer: メモリ消費が少なく、CPUのみのノートPCでも高速な推論と効率的な学習が可能だからです。
+      - question: ThinkPadでAIを動かすメリットは？
+        answer: ポータブルな環境で場所を選ばず独自のAIモデルの開発とテストができる点にあります。
 
   - context: |
       Granite 4.0 1B（Nanoクラス）はIBMが開発した非常に軽量なAIモデルです。適切な設定下では初回レスポンスまで2.3秒程度という高速な動作が期待でき、エッジデバイスやローカルPCでのタスクに適しています。
     questions_and_answers:
-      - question: |
-          Granite 4.0 1Bの特徴は何ですか？
-        answer: |
-          IBMが開発した10億パラメータクラスの非常に軽量なAIモデルです。
-      - question: |
-          Granite 4.0 1Bの応答速度はどのくらいですか？
-        answer: |
-          適切な設定下では、初回レスポンスまで2.3秒程度という非常に高速な動作が期待できます。
+      - question: Granite 4.0 1Bの特徴は何ですか？
+        answer: IBMが開発した10億パラメータクラスの非常に軽量なAIモデルです。
+      - question: Granite 4.0 1Bの応答速度はどのくらいですか？
+        answer: 適切な設定下では、初回レスポンスまで2.3秒程度という非常に高速な動作が期待できます。
+      - question: このモデルはどのようなデバイスに適していますか？
+        answer: エッジデバイスやローカルPC、リソースの限られたノートPCなどに適しています。
 
   - context: |
       ファイル管理ではシンボリックリンク（ln -s）を活用し、実体ファイルをキャッシュに置いたままリポジトリ内から参照させることで容量を節約します。リンクの確認は ls -l コマンドで行います。
     questions_and_answers:
-      - question: |
-          なぜモデルファイルをシンボリックリンクで管理するのですか？
-        answer: |
-          実体ファイルをキャッシュに置いたままリポジトリ内から参照させることで、容量を節約するためです。
-      - question: |
-          作成したシンボリックリンクが正しく機能しているか確認する方法は？
-        answer: |
-          ls -l コマンドを使用して、リンクが正しい実体ファイルを指しているかを確認します。
+      - question: なぜモデルファイルをシンボリックリンクで管理するのですか？
+        answer: 実体ファイルをキャッシュに置いたままリポジトリ内から参照させることで、容量を節約するためです。
+      - question: ln -s コマンドの役割は何ですか？
+        answer: ファイルやディレクトリへのショートカットを作成し、別の場所からアクセス可能にします。
+      - question: シンボリックリンクの確認方法は？
+        answer: ls -l コマンドを使用して、リンクが正しい実体ファイルを指しているかを確認します。
 
   - context: |
       「pipeline: simple」設定は計算リソースが限られた環境向けで、メモリ消費を大幅に抑えます。TeacherモデルをAPIにすることでデータ生成という重いタスクをクラウドに逃がし、マシンのフリーズを防ぎます。
     questions_and_answers:
-      - question: |
-          ilab configにおける「pipeline: simple」設定の意味は何ですか？
-        answer: |
-          メモリ消費を大幅に抑えて実行する、リソース制限環境向けの設定モードです。
-      - question: |
-          TeacherモデルをAPIにする理由は？
-        answer: |
-          データ生成という重いタスクをクラウドに逃がすことで、ローカルマシンのフリーズを防ぐためです。
+      - question: ilab configにおける「pipeline: simple」設定の意味は何ですか？
+        answer: メモリ消費を大幅に抑えて実行する、リソース制限環境向けの設定モードです。
+      - question: TeacherモデルをAPIにする理由は？
+        answer: データ生成という重いタスクをクラウドに逃がすことで、ローカルマシンのフリーズを防ぐためです。
+      - question: 16GB RAM環境での推奨構成は？
+        answer: pipelineをsimpleに設定し、負荷の高い処理を外部API等に委託する構成が推奨されます。
 
   - context: |
       開発者の松尾さんは、ThinkPadを利用してWSL2上のUbuntu環境で開発しています。今日のランチは味付け卵が入ったお手製のおにぎりです。松尾さんはこのおにぎりを食べながらInstructLabの研究をしています。
     questions_and_answers:
-      - question: |
-          松尾さんの今日のランチは何ですか？
-        answer: |
-          味付け卵が入ったお手製のおにぎりです。
-      - question: |
-          松尾さんはおにぎりを食べながら何をしていますか？
-        answer: |
-          おにぎりを食べながら、InstructLabの研究や開発を進めています。
+      - question: 松尾さんの今日のランチは何ですか？
+        answer: 味付け卵が入ったお手製のおにぎりです。
+      - question: 松尾さんはおにぎりを食べながら何をしていますか？
+        answer: おにぎりを食べながら、InstructLabの研究や開発を進めています。
+      - question: 松尾さんの開発環境の詳細を教えてください。
+        answer: ThinkPadを使用し、WSL2（Windows Subsystem for Linux）上のUbuntu環境で開発を行っています。
