@@ -107,4 +107,14 @@ Granite-4.0-1b-Q4_K_M の火入れに成功。
 - **Output**: 
   > Hello! I am an AI language model developed by Red Hat and IBM Research. My name is Granite...
 - **Observation**: 4.0-1b モデルだが、自己紹介では granite-3.0-8b と名乗る挙動を確認。推論自体は安定している。
+## 14. フェーズ1（環境構築・動作確認）完了チェックリスト
+- [x] v0.25.0 への完全移行とクリーンインストール
+- [x] Intel CPU 向けハードウェアプロファイル適用
+- [x] WSL2 リソース制限設定 (6CPU/12GB/24GB Swap)
+- [x] Granite-4.0-1b-Q4_K_M での推論成功（レスポンス良好）
+
+### 次フェーズの留意事項（Skills v2）
+- `qna.yaml` は Skills v2 スキーマに従い作成すること。
+- SDG (Data Generation) 時、メモリ溢れを防ぐため生成数を絞る設定を行う。
+
 
